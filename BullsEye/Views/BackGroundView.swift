@@ -17,9 +17,7 @@ struct BackGroundView: View {
             BottomView(game: $game)
         }
         .padding()
-        .background(
-            Color("BackgroundColor")
-            .edgesIgnoringSafeArea(.all))
+        .background(RingView())
         
     }
 }
@@ -31,9 +29,40 @@ struct TopView: View {
     @Binding var game: Game
     var body: some View {
         HStack{
-            RoundedImageViewStroked(systemName: "arrow.counterclockwise")
+            Button(action: {
+                game.restart()
+            }) {
+                RoundedImageViewStroked(systemName: "arrow.counterclockwise")
+            }
             Spacer()
             RoundedImageViewFilled(systemName: "list.dash")
+        }
+    }
+}
+
+struct RingView: View {
+    
+    //getting env property to know if user is in dark or light mode
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        ZStack{
+            
+            Color("BackgroundColor")
+                .edgesIgnoringSafeArea(.all)
+            
+            
+            ForEach(1..<6) { ring in
+                let size = CGFloat(ring * 100)
+                let opacity = colorScheme == .dark ? 0.1 : 0.3
+                
+                Circle()
+                    .stroke(lineWidth: 20.0)
+                    .fill(
+                        RadialGradient(gradient: Gradient(colors: [Color("RingColor").opacity(opacity * 0.8), Color("RingColor").opacity(0.0)]), center: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, startRadius: 100, endRadius: 300)
+                    )
+                    .frame(width: size, height: size)
+            }
         }
     }
 }
@@ -69,6 +98,7 @@ struct NumberView: View {
 struct BackGroundView_Previews: PreviewProvider {
     static var previews: some View {
         BackGroundView(game: .constant(Game()))
-        
+        BackGroundView(game: .constant(Game()))
+            .colorScheme(.dark)
     }
 }

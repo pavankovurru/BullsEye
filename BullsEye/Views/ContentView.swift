@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var alertIsDisplayed = false
+    @State private var alertIsDisplayed = true
     @State private var sliderValue = 50.0
     @State private var game = Game()
     
@@ -18,8 +18,17 @@ struct ContentView: View {
             BackGroundView(game: $game)
             VStack {
                 InstructionsView(game: $game)
-                SliderView(sliderValue: $sliderValue)
+                    .padding(.bottom, alertIsDisplayed ? 0 : 100)
+                
+                if alertIsDisplayed {
+                    PointsView()
+                } else {
                 ButtonView(alertIsDisplayed: $alertIsDisplayed, sliderValue: $sliderValue, game: $game)
+                }
+                
+                if !alertIsDisplayed {
+                    SliderView(sliderValue: $sliderValue)
+                }
             }
         }
     }
@@ -77,12 +86,15 @@ struct ButtonView: View {
                 .strokeBorder(Color.white, lineWidth: 2.0)
         )
         
-        .alert(isPresented: $alertIsDisplayed, content: {
-            
-            let roundedValue = Int(sliderValue.rounded())
-            
-            return Alert(title: Text("Title"), message: Text("The Slider's value is \(roundedValue).\n" + "You Scored \(game.points(sliderValue: roundedValue)) points this round"), dismissButton: .default(Text("Awesome")))
-        })
+//        .alert(isPresented: $alertIsDisplayed, content: {
+//
+//            let roundedValue = Int(sliderValue.rounded())
+//            let points = game.points(sliderValue: roundedValue)
+//
+//            return Alert(title: Text("Title"), message: Text("The Slider's value is \(roundedValue).\n" + "You Scored \(points) points this round"), dismissButton: .default(Text("Awesome")){
+//                game.startNewRound(points: points)
+//            })
+//        })
     }
 }
 
