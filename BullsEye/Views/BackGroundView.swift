@@ -18,7 +18,6 @@ struct BackGroundView: View {
         }
         .padding()
         .background(RingView())
-        
     }
 }
 
@@ -47,7 +46,6 @@ struct RingView: View {
     
     var body: some View {
         ZStack{
-            
             Color("BackgroundColor")
                 .edgesIgnoringSafeArea(.all)
             

@@ -9,26 +9,32 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var alertIsDisplayed = true
+    @State private var alertIsDisplayed = false
     @State private var sliderValue = 50.0
     @State private var game = Game()
     
     var body: some View {
+        
         ZStack {
             BackGroundView(game: $game)
             VStack {
                 InstructionsView(game: $game)
-                    .padding(.bottom, alertIsDisplayed ? 0 : 100)
-                
-                if alertIsDisplayed {
-                    PointsView()
-                } else {
-                ButtonView(alertIsDisplayed: $alertIsDisplayed, sliderValue: $sliderValue, game: $game)
-                }
+                    .padding(.bottom, alertIsDisplayed ? 0 : 0)
                 
                 if !alertIsDisplayed {
                     SliderView(sliderValue: $sliderValue)
+                        .transition(.scale)
                 }
+                
+                if alertIsDisplayed {
+                    PointsView(alertIsDisplayed: $alertIsDisplayed, sliderValue: $sliderValue, game: $game)
+                        .transition(.scale)
+                } else {
+                    ButtonView(alertIsDisplayed: $alertIsDisplayed, sliderValue: $sliderValue, game: $game)
+                        .transition(.scale)
+                }
+                
+                
             }
         }
     }
@@ -68,7 +74,9 @@ struct ButtonView: View {
     
     var body: some View {
         Button(action: {
-            alertIsDisplayed.toggle()
+            withAnimation{
+                alertIsDisplayed.toggle()
+            }
         }) {
             Text("Hit Me".uppercased())
                 .bold()
@@ -80,21 +88,21 @@ struct ButtonView: View {
             LinearGradient(gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]), startPoint: .top, endPoint: .bottom)
         })
         .foregroundColor(Color.white)
-        .cornerRadius(21)
+        .cornerRadius(Constants.General.roundedRectCornerRadius)
         .overlay(
-            RoundedRectangle(cornerRadius: 21.0)
-                .strokeBorder(Color.white, lineWidth: 2.0)
+            RoundedRectangle(cornerRadius: Constants.General.roundedRectCornerRadius)
+                .strokeBorder(Color.white, lineWidth: Constants.General.strokeWidth)
         )
         
-//        .alert(isPresented: $alertIsDisplayed, content: {
-//
-//            let roundedValue = Int(sliderValue.rounded())
-//            let points = game.points(sliderValue: roundedValue)
-//
-//            return Alert(title: Text("Title"), message: Text("The Slider's value is \(roundedValue).\n" + "You Scored \(points) points this round"), dismissButton: .default(Text("Awesome")){
-//                game.startNewRound(points: points)
-//            })
-//        })
+        //        .alert(isPresented: $alertIsDisplayed, content: {
+        //
+        //            let roundedValue = Int(sliderValue.rounded())
+        //            let points = game.points(sliderValue: roundedValue)
+        //
+        //            return Alert(title: Text("Title"), message: Text("The Slider's value is \(roundedValue).\n" + "You Scored \(points) points this round"), dismissButton: .default(Text("Awesome")){
+        //                game.startNewRound(points: points)
+        //            })
+        //        })
     }
 }
 

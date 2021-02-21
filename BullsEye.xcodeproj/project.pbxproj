@@ -15,6 +15,7 @@
 		CCA5409625A8CF79004CEA34 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA5409525A8CF79004CEA34 /* Game.swift */; };
 		CCA5409F25A8D7C0004CEA34 /* BullsEyeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA5409E25A8D7C0004CEA34 /* BullsEyeTests.swift */; };
 		CCADEBBA25DF58B600F9A621 /* PointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCADEBB925DF58B600F9A621 /* PointsView.swift */; };
+		CCAF0EB325E2C4F70067E7A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF0EB225E2C4F70067E7A6 /* Constants.swift */; };
 		CCE7E3FD25DC0EFF008D82CD /* RoundViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE7E3FC25DC0EFF008D82CD /* RoundViews.swift */; };
 		CCE7E40125DC0F1E008D82CD /* BackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE7E40025DC0F1E008D82CD /* BackGroundView.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		CCA5409E25A8D7C0004CEA34 /* BullsEyeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BullsEyeTests.swift; sourceTree = "<group>"; };
 		CCA540A025A8D7C0004CEA34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCADEBB925DF58B600F9A621 /* PointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsView.swift; sourceTree = "<group>"; };
+		CCAF0EB225E2C4F70067E7A6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CCE7E3FC25DC0EFF008D82CD /* RoundViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundViews.swift; sourceTree = "<group>"; };
 		CCE7E40025DC0F1E008D82CD /* BackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				CCA5409525A8CF79004CEA34 /* Game.swift */,
+				CCAF0EB225E2C4F70067E7A6 /* Constants.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				CCE7E40125DC0F1E008D82CD /* BackGroundView.swift in Sources */,
 				CCE7E3FD25DC0EFF008D82CD /* RoundViews.swift in Sources */,
 				CCA5408425A51B0D004CEA34 /* ContentView.swift in Sources */,
+				CCAF0EB325E2C4F70067E7A6 /* Constants.swift in Sources */,
 				CC11308225DA478800118287 /* TextViews.swift in Sources */,
 				CCADEBBA25DF58B600F9A621 /* PointsView.swift in Sources */,
 				CCA5409625A8CF79004CEA34 /* Game.swift in Sources */,
