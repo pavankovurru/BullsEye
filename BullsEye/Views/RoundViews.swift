@@ -51,6 +51,7 @@ struct RoundedRectTextViewStroked: View {
                 RoundedRectangle(cornerRadius: Constants.General.roundedRectCornerRadius)
                     .strokeBorder(Color("ButtonStrokedColor"),lineWidth: Constants.General.strokeWidth)
             )
+        
     }
 }
 
