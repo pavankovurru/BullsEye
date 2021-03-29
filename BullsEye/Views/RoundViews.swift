@@ -55,6 +55,21 @@ struct RoundedRectTextViewStroked: View {
     }
 }
 
+struct RoundedTextView: View{
+    
+    let text: String
+    
+    var body: some View {
+        Text(text)
+            .font(.title)
+            .foregroundColor(Color("TextColor"))
+            .frame(width: Constants.General.roundedRectViewWidth, height: Constants.General.roundedRectViewHeight)
+            .overlay(
+                Circle()
+                    .strokeBorder(Color("LeaderBoardRowColor"),lineWidth: Constants.General.strokeWidth)
+            )
+    }
+}
 
 
 struct RoundViews_Previews: PreviewProvider {
@@ -64,6 +79,7 @@ struct RoundViews_Previews: PreviewProvider {
             RoundedImageViewStroked(systemName: "arrow.counterclockwise")
             RoundedImageViewFilled(systemName: "list.dash")
             RoundedRectTextViewStroked(text: "999")
+            RoundedTextView(text: "1")
         }
         
         HStack{
@@ -71,7 +87,8 @@ struct RoundViews_Previews: PreviewProvider {
             RoundedImageViewFilled(systemName: "list.dash")            .preferredColorScheme(.dark)
             RoundedRectTextViewStroked(text: "999")
                 .preferredColorScheme(.dark)
-
+            RoundedTextView(text: "1")
+                .preferredColorScheme(.dark)
         }
     }
 }

@@ -54,7 +54,7 @@ struct RingView: View {
              
             ForEach(1..<6) { ring in
                 let size = CGFloat(ring * 100)
-                let opacity = colorScheme == .dark ? 0.1 : 0.3
+                let opacity = colorScheme == .dark ? 0.1  : 0.3
                 
                 Circle()
                     .stroke(lineWidth: 20.0)
@@ -66,7 +66,7 @@ struct RingView: View {
         }
     }
 }
-
+ 
 
 struct BottomView: View {
     
