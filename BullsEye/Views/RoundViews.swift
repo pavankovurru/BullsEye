@@ -14,7 +14,7 @@ struct RoundedImageViewStroked: View {
         Image(systemName: systemName)
             .font(.title)
             .foregroundColor(Color("TextColor"))
-            .frame(width: Constants.General.roundedRectViewWidth, height: Constants.General.roundedRectViewHeight)
+            .frame(width: Constants.General.roundedViewLength, height: Constants.General.roundedViewLength)
             .overlay(
                 Circle()
                     .strokeBorder(Color("ButtonStrokedColor"),lineWidth: Constants.General.strokeWidth)
@@ -63,7 +63,7 @@ struct RoundedTextView: View{
         Text(text)
             .font(.title)
             .foregroundColor(Color("TextColor"))
-            .frame(width: Constants.General.roundedRectViewWidth, height: Constants.General.roundedRectViewHeight)
+            .frame(width: Constants.General.roundedViewLength, height: Constants.General.roundedViewLength)
             .overlay(
                 Circle()
                     .strokeBorder(Color("LeaderBoardRowColor"),lineWidth: Constants.General.strokeWidth)
