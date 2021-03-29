@@ -26,6 +26,17 @@ struct BigNumberText: View {
     var text: String
     var body: some View {
         Text(text)
+            .font(.title)
+            .kerning(2.0)
+            .fontWeight(.black)
+            .foregroundColor(Color("TextColor"))
+    }
+}
+
+struct BigBoldText: View {
+    var text: String
+    var body: some View {
+        Text(text.uppercased())
             .font(.largeTitle)
             .kerning(-1.0)
             .fontWeight(.black)
@@ -113,6 +124,7 @@ struct TextViews_Previews: PreviewProvider {
             ButtonText(text: "Start New Round")
             ScoreText(score: 90)
             DateText(date: Date())
+            BigBoldText(text: "LEADERBOARD")
         }
         .padding()
     }
