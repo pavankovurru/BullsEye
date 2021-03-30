@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct LeaderBoardView: View {
+    
+    @Binding var leaderBoardIsShowing: Bool
+    
     var body: some View {
         ZStack {
             Color("BackgroundColor")
                 .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             VStack (spacing: 10){
-                HeaderView()
+                HeaderView(leaderBoardIsShowing: $leaderBoardIsShowing)
                 LabelView()
                 RowView(index: 1, score: 1, date: Date())
             }
@@ -50,6 +53,8 @@ struct RowView: View {
 
 struct HeaderView: View {
     
+    @Binding var leaderBoardIsShowing: Bool
+    
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
@@ -64,11 +69,13 @@ struct HeaderView: View {
                 } else {
                     BigBoldText(text: "LeaderBoard")
                 }
-            }
+            } 
             
             HStack{
                 Spacer()
-                Button(action: {}) {
+                Button(action: {
+                    leaderBoardIsShowing = false
+                }) {
                     RoundedImageViewFilled(systemName: "xmark")
                         .padding(.trailing)
                 }
@@ -101,13 +108,15 @@ struct LabelView: View {
 }
 
 struct LeaderBoardView_Previews: PreviewProvider {
+    
+    static private var leaderBoardIsShowing = Binding.constant(false)
     static var previews: some View {
-        LeaderBoardView()            
-        LeaderBoardView()
+        LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing)
+        LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing)
             .preferredColorScheme(.dark)
-        LeaderBoardView()
+        LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing)
             .previewLayout(.fixed(width: 528, height: 360))
-        LeaderBoardView()
+        LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing)
             .preferredColorScheme(.dark)
             .previewLayout(.fixed(width: 528, height: 360))
     }
