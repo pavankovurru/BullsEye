@@ -7,12 +7,25 @@
 
 import Foundation
 
+
+struct LeaderBoardEntry {
+    let score: Int
+    let date: Date
+}
+
 struct Game {
     var target = Int.random(in: 1...100)
     var score = 0
     var round = 1
+    var leaderBoardEntries: [LeaderBoardEntry] = []
     
-    
+    init(loadTestData: Bool = false) {
+        if loadTestData {
+            leaderBoardEntries.append(LeaderBoardEntry(score: 100, date: Date()))
+            leaderBoardEntries.append(LeaderBoardEntry(score: 200, date: Date()))
+            leaderBoardEntries.append(LeaderBoardEntry(score: 300, date: Date()))
+        }
+    }
     mutating func restart(){
         score = 0
         round = 1
@@ -42,6 +55,12 @@ struct Game {
         score += points
         round += 1
         target = Int.random(in: 1...100)
+        addToLeaderBoard(points: points)
+    }
+    
+    mutating func addToLeaderBoard(points: Int){
+        leaderBoardEntries.append(LeaderBoardEntry(score: points, date: Date()))
+        leaderBoardEntries.sort{ $0.score > $1.score}
     }
 }
 

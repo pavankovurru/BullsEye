@@ -10,6 +10,7 @@ import SwiftUI
 struct LeaderBoardView: View {
     
     @Binding var leaderBoardIsShowing: Bool
+    @Binding var game: Game
     
     var body: some View {
         ZStack {
@@ -18,7 +19,17 @@ struct LeaderBoardView: View {
             VStack (spacing: 10){
                 HeaderView(leaderBoardIsShowing: $leaderBoardIsShowing)
                 LabelView()
-                RowView(index: 1, score: 1, date: Date())
+                ScrollView{
+                    VStack(spacing: 10) {
+                        
+                        ForEach(game.leaderBoardEntries.indices){ i in
+                            
+                            let leaderboardEntry = game.leaderBoardEntries[i]
+                            RowView(index: i, score: leaderboardEntry.score, date: leaderboardEntry.date)
+                            
+                        }
+                    }
+                }
             }
         }
     }
@@ -57,7 +68,7 @@ struct HeaderView: View {
     
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-
+    
     
     var body: some View{
         ZStack {
@@ -69,7 +80,8 @@ struct HeaderView: View {
                 } else {
                     BigBoldText(text: "LeaderBoard")
                 }
-            } 
+            }
+            
             
             HStack{
                 Spacer()
@@ -82,6 +94,7 @@ struct HeaderView: View {
                 
             }
         }
+        .padding(.top)
         
     }
 }
@@ -98,7 +111,7 @@ struct LabelView: View {
             Spacer()
             LabelText(text: "Date")
                 .frame(width:Constants.LeaderBoard.dateColumnWidth)
-
+            
         }
         .padding(.leading)
         .padding(.trailing)
@@ -110,13 +123,16 @@ struct LabelView: View {
 struct LeaderBoardView_Previews: PreviewProvider {
     
     static private var leaderBoardIsShowing = Binding.constant(false)
+    
+    static private var game = Binding.constant(Game(loadTestData: true))
+    
     static var previews: some View {
-        LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing)
-        LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing)
+        LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing,game: game)
+        LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing,game: game)
             .preferredColorScheme(.dark)
-        LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing)
+        LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing,game: game)
             .previewLayout(.fixed(width: 528, height: 360))
-        LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing)
+        LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing,game: game)
             .preferredColorScheme(.dark)
             .previewLayout(.fixed(width: 528, height: 360))
     }
